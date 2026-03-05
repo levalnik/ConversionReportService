@@ -6,6 +6,8 @@
     <Project Path="src\Application\ConversionReportService.Application.Models\ConversionReportService.Application.Models.csproj" />
     <Project Path="src\Application\ConversionReportService.Application\ConversionReportService.Application.csproj" />
   </Folder>
-  <Folder Name="/src/Infrastructure/" />
+  <Folder Name="/src/Infrastructure/">
+    <Project Path="src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/ConversionReportService.Infrastructure.DataAccess.csproj" />
+  </Folder>
   <Folder Name="/src/Presentation/" />
 </Solution>
