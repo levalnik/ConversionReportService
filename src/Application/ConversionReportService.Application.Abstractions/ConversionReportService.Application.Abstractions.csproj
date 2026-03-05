@@ -7,7 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\ConversionReportService.Application.Models\ConversionReportService.Application.Models.csproj" />
+      <ProjectReference Include="..\ConversionReportService.Application.Models\ConversionReportService.Application.Models.csproj" />
     </ItemGroup>
 
 </Project>
