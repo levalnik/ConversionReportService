@@ -42,12 +42,10 @@ public class ReportService : IReportService
             );
 
             long id = await _repository.CreateRequestAsync(request, conn, tran, ct);
-
-            request.SetId(id);
-
+            
             await tran.CommitAsync(ct);
 
-            await _publisher.PublishReportAsync(request.Id, ct);
+            await _publisher.PublishReportAsync(id, ct);
 
             return request.Id;
         }

@@ -19,7 +19,7 @@ public class ReportResult
         int views,
         int payments)
     {
-        if (views < 0) 
+        if (views < 0)
             throw new DomainException("Views cannot be negative");
 
         if (payments < 0)
@@ -32,5 +32,20 @@ public class ReportResult
         ConversionRatio = views == 0 ? 0 : (double)payments / views;
 
         GeneratedAt = DateTime.UtcNow;
+    }
+
+    public static ReportResult FromDatabase(
+        long requestId,
+        int paymentsCount,
+        double conversionRatio,
+        DateTime generatedAt)
+    {
+        return new ReportResult
+        {
+            RequestId = requestId,
+            PaymentsCount = paymentsCount,
+            ConversionRatio = conversionRatio,
+            GeneratedAt = generatedAt
+        };
     }
 }
