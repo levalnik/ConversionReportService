@@ -1,9 +1,6 @@
 using ConversionReportService.Application.Models.Requests;
 using ConversionReportService.Application.Models.Results;
 using ConversionReportService.Application.Models.Statuses;
-using ConversionReportService.Application.Models.Requests;
-using ConversionReportService.Application.Models.Results;
-using ConversionReportService.Application.Models.Statuses;
 using Npgsql;
 
 namespace ConversionReportService.Application.Abstractions.Repositories;

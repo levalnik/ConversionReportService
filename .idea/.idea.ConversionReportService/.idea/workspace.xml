@@ -11,9 +11,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6e876314-4a1c-40cc-8ee8-3cfb5001cf72" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Caching/RedisReportCache.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Messaging/KafkaReportRequestPublisher.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConversionReportService.slnx" beforeDir="false" afterPath="$PROJECT_DIR$/ConversionReportService.slnx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Database/Migrations/0001_CreateReportsTable.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Database/Runners/MigrationRunner.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/ConversionReportService.Application.Abstractions/Repositories/IReportRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/ConversionReportService.Application.Abstractions/Repositories/IReportRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/ConversionReportService.Infrastructure.DataAccess.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/ConversionReportService.Infrastructure.DataAccess.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +42,8 @@
     <setting file="file://$PROJECT_DIR$/src/Application/ConversionReportService.Application.Abstractions/Repositories/IReportRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Application/ConversionReportService.Application.Contracts/ReportServices/IReportService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Caching/RedisReportCache.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Database/Migrations/0001_CreateReportsTable.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Database/Runners/MigrationRunner.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Messaging/KafkaReportRequestPublisher.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file:///usr/local/share/dotnet/sdk/9.0.305/Sdks/Microsoft.NET.Sdk/analyzers/build/config/analysislevel_9_default.globalconfig" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -191,7 +194,15 @@
       <option name="project" value="LOCAL" />
       <updated>1772709474396</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="feat: implemented kafka publisher and redis cacher, started developing infrastructure layer">
+      <option name="closed" value="true" />
+      <created>1772712094814</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1772712094814</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -206,7 +217,8 @@
     <MESSAGE value="fix: fixed root of models project in file system" />
     <MESSAGE value="feat: added contracts in application layer" />
     <MESSAGE value="feat: implemented the ReportService" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: implemented the ReportService" />
+    <MESSAGE value="feat: implemented kafka publisher and redis cacher, started developing infrastructure layer" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: implemented kafka publisher and redis cacher, started developing infrastructure layer" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
