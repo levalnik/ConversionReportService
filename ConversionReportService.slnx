@@ -2,6 +2,7 @@
   <Folder Name="/src/" />
   <Folder Name="/src/Application/">
     <Project Path="src/Application/ConversionReportService.Application.Abstractions/ConversionReportService.Application.Abstractions.csproj" />
+    <Project Path="src/Application/ConversionReportService.Application.Contracts/ConversionReportService.Application.Contracts.csproj" />
     <Project Path="src\Application\ConversionReportService.Application.Models\ConversionReportService.Application.Models.csproj" />
   </Folder>
   <Folder Name="/src/Infrastructure/" />
