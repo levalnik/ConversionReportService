@@ -10,4 +10,8 @@
       <ProjectReference Include="..\ConversionReportService.Application.Models\ConversionReportService.Application.Models.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Npgsql" Version="10.0.1" />
+    </ItemGroup>
+
 </Project>

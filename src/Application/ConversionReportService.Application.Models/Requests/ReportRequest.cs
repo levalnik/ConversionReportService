@@ -21,17 +21,20 @@ public class ReportRequest
     private ReportRequest() { }
 
     public ReportRequest(
-        long id,
         long productId,
         long checkoutId,
         ReportPeriod period)
     {
-        Id = id;
         ProductId = productId;
         CheckoutId = checkoutId;
         Period = period;
         Status = ReportStatus.Pending;
         CreatedAt = DateTime.UtcNow;
+    }
+
+    public void SetId(long id)
+    {
+        Id = id;
     }
 
     public void StartProcessing()
