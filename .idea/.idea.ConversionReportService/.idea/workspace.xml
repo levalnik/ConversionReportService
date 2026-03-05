@@ -11,9 +11,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6e876314-4a1c-40cc-8ee8-3cfb5001cf72" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Repositories/ReportRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/ConversionReportService.Application.Models/Results/ReportResult.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/ConversionReportService.Application.Models/Results/ReportResult.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/ConversionReportService.Application/ReportServices/ReportService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/ConversionReportService.Application/ReportServices/ReportService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Grpc/ConversionReportService.Presentation.Grpc.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Grpc/Interceptors/GrpcExceptionInterceptor.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Grpc/Protos/report.proto" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Grpc/Services/ReportServiceGrpc.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConversionReportService.slnx" beforeDir="false" afterPath="$PROJECT_DIR$/ConversionReportService.slnx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +47,8 @@
     <setting file="file://$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Database/Runners/MigrationRunner.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Messaging/KafkaReportRequestPublisher.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Repositories/ReportRepository.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Grpc/Interceptors/GrpcExceptionInterceptor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Grpc/Services/ReportServiceGrpc.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file:///usr/local/share/dotnet/sdk/9.0.305/Sdks/Microsoft.NET.Sdk/analyzers/build/config/analysislevel_9_default.globalconfig" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -210,7 +214,15 @@
       <option name="project" value="LOCAL" />
       <updated>1772714333414</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="feat: implemented report repository">
+      <option name="closed" value="true" />
+      <created>1772715520151</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1772715520151</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -227,7 +239,8 @@
     <MESSAGE value="feat: implemented the ReportService" />
     <MESSAGE value="feat: implemented kafka publisher and redis cacher, started developing infrastructure layer" />
     <MESSAGE value="feat: added migration and runner" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: added migration and runner" />
+    <MESSAGE value="feat: implemented report repository" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: implemented report repository" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

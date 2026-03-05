@@ -9,5 +9,7 @@
   <Folder Name="/src/Infrastructure/">
     <Project Path="src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/ConversionReportService.Infrastructure.DataAccess.csproj" />
   </Folder>
-  <Folder Name="/src/Presentation/" />
+  <Folder Name="/src/Presentation/">
+    <Project Path="src\Presentation\ConversionReportService.Presentation.Grpc\ConversionReportService.Presentation.Grpc.csproj" />
+  </Folder>
 </Solution>
