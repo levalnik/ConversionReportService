@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Application\ConversionReportService.Application\ConversionReportService.Application.csproj" />
+      <ProjectReference Include="..\Infrastructure\ConversionReportService.Infrastructure.DataAccess\ConversionReportService.Infrastructure.DataAccess.csproj" />
+      <ProjectReference Include="..\Presentation\ConversionReportService.Presentation.Grpc\ConversionReportService.Presentation.Grpc.csproj" />
+      <ProjectReference Include="..\Presentation\ConversionReportService.Presentation.Kafka\ConversionReportService.Presentation.Kafka.csproj" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,97 @@
+name: conversion-report-service
+
+services:
+  report_postgres:
+    image: postgres:16
+    container_name: report-postgres
+    environment:
+      POSTGRES_USER: report_user
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: report_db
+    ports:
+      - "5436:5432"
+    volumes:
+      - report_pgdata:/var/lib/postgresql/data
+    restart: unless-stopped
+    networks:
+      - conversion-report-network
+
+  redis:
+    image: redis:7
+    container_name: report-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    networks:
+      - conversion-report-network
+    volumes:
+      - redis_data:/data
+
+  zookeeper:
+    image: wurstmeister/zookeeper:latest
+    platform: linux/amd64
+    restart: unless-stopped
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+    networks:
+      - conversion-report-network
+
+  kafka:
+    image: wurstmeister/kafka:latest
+    restart: unless-stopped
+    environment:
+      KAFKA_LOG_DIRS: /kafka-data
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      KAFKA_LISTENERS: EXTERNAL://:9093,INTERNAL://:9094
+      KAFKA_ADVERTISED_LISTENERS: EXTERNAL://127.0.0.1:9093,INTERNAL://kafka:9094
+
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: EXTERNAL:PLAINTEXT,INTERNAL:PLAINTEXT
+      ALLOW_PLAINTEXT_LISTENER: yes
+
+      KAFKA_CREATE_TOPICS:
+        report_requested:1:1
+
+    depends_on:
+      - zookeeper
+    networks:
+      - conversion-report-network
+    volumes:
+      - kafka_data:/kafka-data
+    ports:
+      - "9093:9094"
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    restart: unless-stopped
+    depends_on:
+      - kafka
+    networks:
+      - conversion-report-network
+    ports:
+      - "8005:8080"
+    volumes:
+      - ../Presentation/ConversionReportService.Presentation.Kafka/Protos:/schemas
+    environment:
+      kafka.clusters.0.name: kafka
+      kafka.clusters.0.bootstrapServers: kafka:9094
+
+      kafka.clusters.0.defaultKeySerde: ProtobufFile
+      kafka.clusters.0.defaultValueSerde: ProtobufFile
+
+      kafka.clusters.0.serde.0.name: ProtobufFile
+      kafka.clusters.0.serde.0.properties.protobufFilesDir: /schemas/
+
+      kafka.clusters.0.serde.0.properties.protobufMessageNameForKeyByTopic.report_requested: ReportRequestedKey
+      kafka.clusters.0.serde.0.properties.protobufMessageNameByTopic.report_requested: ReportRequestedValue
+
+networks:
+  conversion-report-network:
+    driver: bridge
+
+volumes:
+  report_pgdata: {}
+  kafka_data: {}
+  redis_data: {}

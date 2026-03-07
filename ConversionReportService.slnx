@@ -1,5 +1,7 @@
 <Solution>
-  <Folder Name="/src/" />
+  <Folder Name="/src/">
+    <Project Path="src/ConversionReportService/ConversionReportService.csproj" />
+  </Folder>
   <Folder Name="/src/Application/">
     <Project Path="src/Application/ConversionReportService.Application.Abstractions/ConversionReportService.Application.Abstractions.csproj" />
     <Project Path="src/Application/ConversionReportService.Application.Contracts/ConversionReportService.Application.Contracts.csproj" />
