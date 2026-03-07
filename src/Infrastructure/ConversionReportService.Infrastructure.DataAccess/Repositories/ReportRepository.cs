@@ -9,6 +9,13 @@ namespace ConversionReportService.Infrastructure.DataAccess.Repositories;
 
 public class ReportRepository : IReportRepository
 {
+    private readonly NpgsqlDataSource _dataSource;
+
+    public ReportRepository(NpgsqlDataSource dataSource)
+    {
+        _dataSource = dataSource;
+    }
+
     public async Task<long> CreateRequestAsync(
         ReportRequest request,
         NpgsqlConnection conn,
@@ -99,8 +106,7 @@ public class ReportRepository : IReportRepository
             WHERE id = @id
         """;
 
-        await using var conn = new NpgsqlConnection();
-        await conn.OpenAsync(cancellationToken);
+        await using var conn = await _dataSource.OpenConnectionAsync(cancellationToken);
 
         await using var cmd = new NpgsqlCommand(sql, conn);
         cmd.Parameters.AddWithValue("id", id);
@@ -115,15 +121,17 @@ public class ReportRepository : IReportRepository
             reader.GetDateTime(4)
         );
 
-        var request = new ReportRequest(
+        var statusValue = reader.GetString(5);
+        if (!Enum.TryParse(statusValue, out ReportStatus status))
+            throw new InvalidOperationException($"Unknown report status '{statusValue}'.");
+
+        return ReportRequest.FromDatabase(
+            reader.GetInt64(0),
             reader.GetInt64(1),
             reader.GetInt64(2),
-            period
-        );
-
-        request.SetId(reader.GetInt64(0));
-
-        return request;
+            period,
+            status,
+            reader.GetDateTime(6));
     }
 
     public async Task<ReportResult?> GetResultAsync(
@@ -139,8 +147,7 @@ public class ReportRepository : IReportRepository
             WHERE request_id = @requestId
         """;
 
-        await using var conn = new NpgsqlConnection();
-        await conn.OpenAsync(cancellationToken);
+        await using var conn = await _dataSource.OpenConnectionAsync(cancellationToken);
 
         await using var cmd = new NpgsqlCommand(sql, conn);
         cmd.Parameters.AddWithValue("requestId", requestId);
