@@ -7,12 +7,12 @@ using Google.Protobuf.WellKnownTypes;
 
 namespace ConversionReportService.Presentation.Kafka.Publishers;
 
-public sealed class ReportRequestedPublisher : IReportRequestPublisher
+public sealed class ReportRequestPublisher : IReportRequestPublisher
 {
     private readonly IKafkaProducer<long, ReportRequestedValue> _producer;
     private readonly KafkaOptions _options;
 
-    public ReportRequestedPublisher(
+    public ReportRequestPublisher(
         IKafkaProducer<long, ReportRequestedValue> producer,
         KafkaOptions options)
     {

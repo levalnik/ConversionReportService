@@ -1,9 +1,10 @@
 using System.Text.Json;
+using ConversionReportService.Application.Abstractions.Caching;
 using StackExchange.Redis;
 
 namespace ConversionReportService.Infrastructure.DataAccess.Caching;
 
-public class RedisReportCache
+public class RedisReportCache : IReportCache
 {
     private readonly IDatabase _database;
 
