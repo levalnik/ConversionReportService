@@ -3,6 +3,7 @@ using ConversionReportService.Application.Abstractions.Messaging;
 using ConversionReportService.Application.Abstractions.Repositories;
 using ConversionReportService.Application.Contracts.ReportServices;
 using ConversionReportService.Application.Models.Dtos;
+using ConversionReportService.Application.Models.Events;
 using ConversionReportService.Application.Models.Requests;
 using ConversionReportService.Application.Models.ValueObjects;
 using Npgsql;
@@ -41,11 +42,19 @@ public class ReportService : IReportService
                 new ReportPeriod(dto.From, dto.To)
             );
 
-            long id = await _repository.CreateRequestAsync(request, conn, tran, ct);
+            await _repository.CreateRequestAsync(request, conn, tran, ct);
             
             await tran.CommitAsync(ct);
 
-            await _publisher.PublishReportAsync(id, ct);
+            await _publisher.PublishReportAsync(
+                new ReportRequestedEvent(
+                    RequestId: request.Id,
+                    ProductId: request.ProductId,
+                    CheckoutId: request.CheckoutId,
+                    From: request.Period.From,
+                    To: request.Period.To,
+                    CreatedAt: request.CreatedAt), 
+                ct);
 
             return request.Id;
         }

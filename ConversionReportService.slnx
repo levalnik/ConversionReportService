@@ -10,6 +10,7 @@
     <Project Path="src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/ConversionReportService.Infrastructure.DataAccess.csproj" />
   </Folder>
   <Folder Name="/src/Presentation/">
+    <Project Path="src/Presentation/ConversionReportService.Presentation.Kafka/ConversionReportService.Presentation.Kafka.csproj" />
     <Project Path="src\Presentation\ConversionReportService.Presentation.Grpc\ConversionReportService.Presentation.Grpc.csproj" />
   </Folder>
 </Solution>

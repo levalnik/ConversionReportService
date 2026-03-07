@@ -11,11 +11,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6e876314-4a1c-40cc-8ee8-3cfb5001cf72" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Grpc/ConversionReportService.Presentation.Grpc.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Grpc/Interceptors/GrpcExceptionInterceptor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Grpc/Protos/report.proto" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Grpc/Services/ReportServiceGrpc.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/ConversionReportService.Application.Models/Events/ReportRequestedEvent.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Kafka/Abstractions/IKafkaProducer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Kafka/Options/KafkaOptions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Kafka/Producers/KafkaProducer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Kafka/Protos/report_requested_event.proto" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Kafka/Publishers/ReportRequestPublisher.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ConversionReportService.slnx" beforeDir="false" afterPath="$PROJECT_DIR$/ConversionReportService.slnx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/ConversionReportService.Application.Abstractions/Messaging/IReportRequestPublisher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/ConversionReportService.Application.Abstractions/Messaging/IReportRequestPublisher.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/ConversionReportService.Application/ReportServices/ReportService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/ConversionReportService.Application/ReportServices/ReportService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Messaging/KafkaReportRequestPublisher.cs" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,17 +43,22 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7f8b563a45024964aebc82032c603b8f6e800/76/b453c1a7/Message`2.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Application/ConversionReportService.Application.Abstractions/Caching/IReportCache.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Application/ConversionReportService.Application.Abstractions/Messaging/IReportRequestPublisher.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Application/ConversionReportService.Application.Abstractions/Repositories/IReportRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Application/ConversionReportService.Application.Contracts/ReportServices/IReportService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Application/ConversionReportService.Application.Models/Events/ReportRequestedEvent.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Caching/RedisReportCache.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Database/Migrations/0001_CreateReportsTable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Database/Runners/MigrationRunner.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Messaging/KafkaReportRequestPublisher.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Repositories/ReportRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Grpc/Interceptors/GrpcExceptionInterceptor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Grpc/Services/ReportServiceGrpc.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Kafka/Abstractions/IKafkaProducer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Kafka/Options/KafkaOptions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Kafka/Producers/KafkaProducer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Kafka/Publishers/ReportRequestPublisher.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file:///usr/local/share/dotnet/sdk/9.0.305/Sdks/Microsoft.NET.Sdk/analyzers/build/config/analysislevel_9_default.globalconfig" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -222,7 +232,15 @@
       <option name="project" value="LOCAL" />
       <updated>1772715520151</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="feat: added presentation layer using grpc">
+      <option name="closed" value="true" />
+      <created>1772722302946</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1772722302946</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -240,7 +258,8 @@
     <MESSAGE value="feat: implemented kafka publisher and redis cacher, started developing infrastructure layer" />
     <MESSAGE value="feat: added migration and runner" />
     <MESSAGE value="feat: implemented report repository" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: implemented report repository" />
+    <MESSAGE value="feat: added presentation layer using grpc" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: added presentation layer using grpc" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
