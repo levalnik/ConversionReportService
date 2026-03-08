@@ -8,6 +8,9 @@ namespace ConversionReportService.Application.ReportServices;
 
 public class ReportService : IReportService
 {
+    private static readonly TimeSpan TerminalCacheTtl = TimeSpan.FromMinutes(5);
+    private static readonly TimeSpan InFlightCacheTtl = TimeSpan.FromSeconds(15);
+
     private readonly IReportRepository _repository;
     private readonly IReportCache _cache;
 
@@ -41,14 +44,9 @@ public class ReportService : IReportService
             PaymentsCount = result?.PaymentsCount
         };
 
-        if (request.Status is ReportStatus.Completed or ReportStatus.Failed)
-        {
-            await _cache.SetAsync(
-                requestId,
-                response,
-                TimeSpan.FromMinutes(5),
-                ct);
-        }
+        var ttl = request.Status is ReportStatus.Completed or ReportStatus.Failed ? TerminalCacheTtl : InFlightCacheTtl;
+
+        await _cache.SetAsync(requestId, response, ttl, ct);
 
         return response;
     }

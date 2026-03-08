@@ -13,11 +13,7 @@
   <component name="ChangeListManager">
     <list default="true" id="6e876314-4a1c-40cc-8ee8-3cfb5001cf72" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ConversionReportService/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ConversionReportService/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/ConversionReportService.Application.Abstractions/Repositories/IReportRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/ConversionReportService.Application.Abstractions/Repositories/IReportRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/ConversionReportService.Application/Extensions/ApplicationServiceExtension.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/ConversionReportService.Application/Extensions/ApplicationServiceExtension.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Database/Migrations/CreateInitialTables.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Database/Migrations/CreateInitialTables.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Repositories/ReportRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Repositories/ReportRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Kafka/Consumers/ReportRequestedConsumer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Kafka/Consumers/ReportRequestedConsumer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/ConversionReportService.Application/ReportServices/ReportService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/ConversionReportService.Application/ReportServices/ReportService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,7 +174,7 @@
       <option name="presentableId" value="Default" />
       <updated>1772622390882</updated>
       <workItem from="1772622391894" duration="5769000" />
-      <workItem from="1772982331439" duration="2233000" />
+      <workItem from="1772982331439" duration="2911000" />
     </task>
     <task id="LOCAL-00001" summary="Init">
       <option name="closed" value="true" />
@@ -316,7 +312,15 @@
       <option name="project" value="LOCAL" />
       <updated>1772982420953</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="feat: implemented full async pipeline and real DB-based conversion metrics">
+      <option name="closed" value="true" />
+      <created>1772991016166</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1772991016166</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -340,7 +344,8 @@
     <MESSAGE value="feat: added docker-compose and appsettings file, added program to build application" />
     <MESSAGE value="feat: improved a migration to match the models; fix: fixed sql requests of repository" />
     <MESSAGE value="feat: remade bus included logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: remade bus included logic" />
+    <MESSAGE value="feat: implemented full async pipeline and real DB-based conversion metrics" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: implemented full async pipeline and real DB-based conversion metrics" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
