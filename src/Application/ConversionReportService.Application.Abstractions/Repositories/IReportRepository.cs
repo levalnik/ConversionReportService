@@ -26,6 +26,13 @@ public interface IReportRepository
         NpgsqlTransaction tran,
         CancellationToken cancellationToken);
 
+    Task<(int ViewsCount, int PaymentsCount)> GetMetricsAsync(
+        long productId,
+        long checkoutId,
+        DateTime from,
+        DateTime to,
+        CancellationToken cancellationToken);
+
     Task<ReportRequest?> GetRequestAsync(long id, CancellationToken cancellationToken);
 
     Task<ReportResult?> GetResultAsync(long requestId, CancellationToken cancellationToken);

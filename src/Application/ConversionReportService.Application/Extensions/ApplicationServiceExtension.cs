@@ -10,6 +10,7 @@ public static class ApplicationServiceExtension
     {
         services.AddScoped<IReportService, ReportService>();
         services.AddScoped<IReportRequestIngestionService, ReportRequestIngestionService>();
+        services.AddScoped<IReportProcessingService, ReportProcessingService>();
 
         return services;
     }

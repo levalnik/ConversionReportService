@@ -56,12 +56,15 @@ public sealed class ReportRequestedConsumer : BackgroundService
                 using var scope = _scopeFactory.CreateScope();
                 var ingestionService =
                     scope.ServiceProvider.GetRequiredService<IReportRequestIngestionService>();
+                var processingService =
+                    scope.ServiceProvider.GetRequiredService<IReportProcessingService>();
 
                 var createdId = await ingestionService.IngestAsync(evt, stoppingToken);
+                await processingService.ProcessAsync(createdId, stoppingToken);
                 _consumer.Commit(result);
 
                 _logger.LogInformation(
-                    "Ingested report request from bus. IncomingRequestId={IncomingRequestId}, CreatedRequestId={CreatedRequestId}",
+                    "Ingested and processed report request from bus. IncomingRequestId={IncomingRequestId}, CreatedRequestId={CreatedRequestId}",
                     evt.RequestId,
                     createdId);
             }

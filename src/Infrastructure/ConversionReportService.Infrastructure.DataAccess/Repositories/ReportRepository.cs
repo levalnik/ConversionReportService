@@ -90,6 +90,44 @@ public class ReportRepository : IReportRepository
         await cmd.ExecuteNonQueryAsync(cancellationToken);
     }
 
+    public async Task<(int ViewsCount, int PaymentsCount)> GetMetricsAsync(
+        long productId,
+        long checkoutId,
+        DateTime from,
+        DateTime to,
+        CancellationToken cancellationToken)
+    {
+        const string sql = """
+            SELECT
+                (SELECT COUNT(*)::int
+                 FROM product_view_events
+                 WHERE product_id = @productId
+                   AND checkout_id = @checkoutId
+                   AND occurred_at >= @from
+                   AND occurred_at < @to) AS views_count,
+                (SELECT COUNT(*)::int
+                 FROM product_payment_events
+                 WHERE product_id = @productId
+                   AND checkout_id = @checkoutId
+                   AND status = 'Success'
+                   AND occurred_at >= @from
+                   AND occurred_at < @to) AS payments_count
+        """;
+
+        await using var conn = await _dataSource.OpenConnectionAsync(cancellationToken);
+        await using var cmd = new NpgsqlCommand(sql, conn);
+
+        cmd.Parameters.AddWithValue("productId", productId);
+        cmd.Parameters.AddWithValue("checkoutId", checkoutId);
+        cmd.Parameters.AddWithValue("from", from);
+        cmd.Parameters.AddWithValue("to", to);
+
+        await using var reader = await cmd.ExecuteReaderAsync(cancellationToken);
+        await reader.ReadAsync(cancellationToken);
+
+        return (reader.GetInt32(0), reader.GetInt32(1));
+    }
+
     public async Task<ReportRequest?> GetRequestAsync(
         long id,
         CancellationToken cancellationToken)

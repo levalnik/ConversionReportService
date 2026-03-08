@@ -40,10 +40,46 @@ public class CreateInitialTables : Migration {
             .FromTable("report_results").ForeignColumn("request_id")
             .ToTable("report_requests").PrimaryColumn("id")
             .OnDelete(System.Data.Rule.Cascade);
+
+        Create.Table("product_view_events")
+            .WithColumn("id").AsInt64().PrimaryKey().Identity()
+            .WithColumn("product_id").AsInt64().NotNullable()
+            .WithColumn("checkout_id").AsInt64().NotNullable()
+            .WithColumn("occurred_at").AsDateTime().NotNullable();
+
+        Create.Index("idx_view_events_product_checkout_time")
+            .OnTable("product_view_events")
+            .OnColumn("product_id").Ascending()
+            .OnColumn("checkout_id").Ascending()
+            .OnColumn("occurred_at").Ascending();
+
+        Create.Table("product_payment_events")
+            .WithColumn("id").AsInt64().PrimaryKey().Identity()
+            .WithColumn("product_id").AsInt64().NotNullable()
+            .WithColumn("checkout_id").AsInt64().NotNullable()
+            .WithColumn("status").AsString(32).NotNullable()
+            .WithColumn("occurred_at").AsDateTime().NotNullable();
+
+        Create.Index("idx_payment_events_product_checkout_time")
+            .OnTable("product_payment_events")
+            .OnColumn("product_id").Ascending()
+            .OnColumn("checkout_id").Ascending()
+            .OnColumn("occurred_at").Ascending();
+
+        Create.Index("idx_payment_events_status")
+            .OnTable("product_payment_events")
+            .OnColumn("status");
     }
 
     public override void Down()
     {
+        Delete.Index("idx_payment_events_status").OnTable("product_payment_events");
+        Delete.Index("idx_payment_events_product_checkout_time").OnTable("product_payment_events");
+        Delete.Table("product_payment_events");
+
+        Delete.Index("idx_view_events_product_checkout_time").OnTable("product_view_events");
+        Delete.Table("product_view_events");
+
         Delete.ForeignKey("fk_report_results_request").OnTable("report_results");
 
         Delete.Table("report_results");
