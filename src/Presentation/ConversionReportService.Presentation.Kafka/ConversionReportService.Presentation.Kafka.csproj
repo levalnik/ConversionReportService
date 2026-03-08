@@ -28,7 +28,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Application\ConversionReportService.Application.Abstractions\ConversionReportService.Application.Abstractions.csproj" />
+      <ProjectReference Include="..\..\Application\ConversionReportService.Application.Contracts\ConversionReportService.Application.Contracts.csproj" />
     </ItemGroup>
 
 </Project>

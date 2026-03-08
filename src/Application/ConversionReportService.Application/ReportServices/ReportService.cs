@@ -1,68 +1,22 @@
 using ConversionReportService.Application.Abstractions.Caching;
-using ConversionReportService.Application.Abstractions.Messaging;
 using ConversionReportService.Application.Abstractions.Repositories;
 using ConversionReportService.Application.Contracts.ReportServices;
 using ConversionReportService.Application.Models.Dtos;
-using ConversionReportService.Application.Models.Events;
-using ConversionReportService.Application.Models.Requests;
-using ConversionReportService.Application.Models.ValueObjects;
-using Npgsql;
+using ConversionReportService.Application.Models.Statuses;
 
 namespace ConversionReportService.Application.ReportServices;
 
 public class ReportService : IReportService
 {
     private readonly IReportRepository _repository;
-    private readonly IReportRequestPublisher _publisher;
     private readonly IReportCache _cache;
-    private readonly NpgsqlDataSource _dataSource;
 
     public ReportService(
         IReportRepository repository,
-        IReportRequestPublisher publisher,
-        IReportCache cache,
-        NpgsqlDataSource dataSource)
+        IReportCache cache)
     {
         _repository = repository;
-        _publisher = publisher;
         _cache = cache;
-        _dataSource = dataSource;
-    }
-
-    public async Task<long> CreateReportAsync(CreateReportRequestDto dto, CancellationToken ct)
-    {
-        await using NpgsqlConnection conn = await _dataSource.OpenConnectionAsync(ct);
-        await using NpgsqlTransaction tran = await conn.BeginTransactionAsync(ct);
-
-        try
-        {
-            var request = new ReportRequest(
-                dto.ProductId,
-                dto.CheckoutId,
-                new ReportPeriod(dto.From, dto.To)
-            );
-
-            await _repository.CreateRequestAsync(request, conn, tran, ct);
-            
-            await tran.CommitAsync(ct);
-
-            await _publisher.PublishReportAsync(
-                new ReportRequestedEvent(
-                    RequestId: request.Id,
-                    ProductId: request.ProductId,
-                    CheckoutId: request.CheckoutId,
-                    From: request.Period.From,
-                    To: request.Period.To,
-                    CreatedAt: request.CreatedAt), 
-                ct);
-
-            return request.Id;
-        }
-        catch
-        {
-            await tran.RollbackAsync(ct);
-            throw;
-        }
     }
 
     public async Task<ReportResponseDto> GetReportAsync(long requestId, CancellationToken ct)
@@ -75,7 +29,7 @@ public class ReportService : IReportService
         var request = await _repository.GetRequestAsync(requestId, ct);
 
         if (request == null)
-            throw new Exception("Report not found");
+            throw new KeyNotFoundException("Report not found");
 
         var result = await _repository.GetResultAsync(requestId, ct);
 
@@ -87,11 +41,14 @@ public class ReportService : IReportService
             PaymentsCount = result?.PaymentsCount
         };
 
-        await _cache.SetAsync(
-            requestId,
-            response,
-            TimeSpan.FromMinutes(5),
-            ct);
+        if (request.Status is ReportStatus.Completed or ReportStatus.Failed)
+        {
+            await _cache.SetAsync(
+                requestId,
+                response,
+                TimeSpan.FromMinutes(5),
+                ct);
+        }
 
         return response;
     }

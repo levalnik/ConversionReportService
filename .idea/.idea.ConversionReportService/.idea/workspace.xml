@@ -5,24 +5,27 @@
     <projectFile>src/Application/ConversionReportService.Application.Abstractions/ConversionReportService.Application.Abstractions.csproj</projectFile>
     <projectFile>src/Application/ConversionReportService.Application.Contracts/ConversionReportService.Application.Contracts.csproj</projectFile>
     <projectFile>src/ConversionReportService.Application.Models/ConversionReportService.Application.Models.csproj</projectFile>
+    <projectFile>src/ConversionReportService/ConversionReportService.csproj</projectFile>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e876314-4a1c-40cc-8ee8-3cfb5001cf72" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Application/ConversionReportService.Application/Extensions/ApplicationServiceExtension.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Database/Options/DatabaseOptions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Extensions/DatabaseExtension.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Extensions/InfrastructureRepositoryExtension.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Extensions/RedisCacheExtension.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Grpc/Extensions/PresentationServiceExtension.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Kafka/Extensions/KafkaExtension.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Caching/RedisReportCache.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Caching/RedisReportCache.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/ConversionReportService.Infrastructure.DataAccess.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/ConversionReportService.Infrastructure.DataAccess.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Database/Migrations/0001_CreateReportsTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Database/Migrations/CreateInitialTables.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Database/Runners/MigrationRunner.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Kafka/Publishers/ReportRequestPublisher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Kafka/Publishers/ReportRequestPublisher.cs" afterDir="false" />
+    <list default="true" id="6e876314-4a1c-40cc-8ee8-3cfb5001cf72" name="Changes" comment="feat: improved">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ConversionReportService/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ConversionReportService/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/ConversionReportService.Application.Abstractions/Messaging/IReportRequestPublisher.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/ConversionReportService.Application.Contracts/ReportServices/IReportService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/ConversionReportService.Application.Contracts/ReportServices/IReportService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/ConversionReportService.Application.Models/Dtos/CreateReportRequestDto.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/ConversionReportService.Application/Extensions/ApplicationServiceExtension.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/ConversionReportService.Application/Extensions/ApplicationServiceExtension.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/ConversionReportService.Application/ReportServices/ReportService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/ConversionReportService.Application/ReportServices/ReportService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Grpc/Protos/report.proto" beforeDir="false" afterPath="$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Grpc/Protos/report.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Grpc/Services/ReportServiceGrpc.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Grpc/Services/ReportServiceGrpc.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Kafka/Abstractions/IKafkaProducer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Kafka/ConversionReportService.Presentation.Kafka.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Kafka/ConversionReportService.Presentation.Kafka.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Kafka/Extensions/KafkaExtension.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Kafka/Extensions/KafkaExtension.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Kafka/Options/KafkaOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Kafka/Options/KafkaOptions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Kafka/Producers/KafkaProducer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Kafka/Publishers/ReportRequestPublisher.cs" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,10 +50,10 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7f8b563a45024964aebc82032c603b8f6e800/76/b453c1a7/Message`2.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Application/ConversionReportService.Application.Abstractions/Caching/IReportCache.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Application/ConversionReportService.Application.Abstractions/Messaging/IReportRequestPublisher.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Application/ConversionReportService.Application.Abstractions/Repositories/IReportRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Application/ConversionReportService.Application.Contracts/ReportServices/IReportService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Application/ConversionReportService.Application.Models/Events/ReportRequestedEvent.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/ConversionReportService/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Caching/RedisReportCache.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Database/Options/DatabaseOptions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Extensions/DatabaseExtension.cs" root0="FORCE_HIGHLIGHTING" />
@@ -59,11 +62,8 @@
     <setting file="file://$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Grpc/Extensions/PresentationServiceExtension.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Grpc/Interceptors/GrpcExceptionInterceptor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Grpc/Services/ReportServiceGrpc.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Kafka/Abstractions/IKafkaProducer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Kafka/Extensions/KafkaExtension.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Kafka/Options/KafkaOptions.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Kafka/Producers/KafkaProducer.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Kafka/Publishers/ReportRequestPublisher.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file:///usr/local/share/dotnet/sdk/9.0.305/Sdks/Microsoft.NET.Sdk/analyzers/build/config/analysislevel_9_default.globalconfig" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -104,6 +104,27 @@
       <option name="RUNTIME_ARGUMENTS" value="" />
       <option name="AUTO_ATTACH_CHILDREN" value="0" />
       <option name="PROJECT_PATH" value="$PROJECT_DIR$/src/Application/ConversionReportService.Application.Models/ConversionReportService.Application.Models.csproj" />
+      <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
+      <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
+      <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
+      <option name="PROJECT_KIND" value="DotNetCore" />
+      <option name="PROJECT_TFM" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
+    <configuration name="ConversionReportService" type="DotNetProject" factoryName=".NET Project">
+      <option name="EXE_PATH" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="ENV_FILE_PATHS" value="" />
+      <option name="REDIRECT_INPUT_PATH" value="" />
+      <option name="MIXED_MODE_DEBUG" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="AUTO_ATTACH_CHILDREN" value="0" />
+      <option name="PROJECT_PATH" value="$PROJECT_DIR$/src/ConversionReportService/ConversionReportService.csproj" />
       <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
       <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
       <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
@@ -261,7 +282,39 @@
       <option name="project" value="LOCAL" />
       <updated>1772898390863</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="feat: added extension methods">
+      <option name="closed" value="true" />
+      <created>1772900305251</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1772900305251</updated>
+    </task>
+    <task id="LOCAL-00014" summary="feat: added docker-compose and appsettings file, added program to build application">
+      <option name="closed" value="true" />
+      <created>1772924918502</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1772924918502</updated>
+    </task>
+    <task id="LOCAL-00015" summary="feat: added docker-compose and appsettings file, added program to build application">
+      <option name="closed" value="true" />
+      <created>1772924943893</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1772924943893</updated>
+    </task>
+    <task id="LOCAL-00016" summary="feat: improved a migration to match the models; fix: fixed sql requests of repository">
+      <option name="closed" value="true" />
+      <created>1772925893448</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1772925893448</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -281,7 +334,10 @@
     <MESSAGE value="feat: implemented report repository" />
     <MESSAGE value="feat: added presentation layer using grpc" />
     <MESSAGE value="feat: added topics and producers for kafka, improved event building in service" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: added topics and producers for kafka, improved event building in service" />
+    <MESSAGE value="feat: added extension methods" />
+    <MESSAGE value="feat: added docker-compose and appsettings file, added program to build application" />
+    <MESSAGE value="feat: improved a migration to match the models; fix: fixed sql requests of repository" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: improved a migration to match the models; fix: fixed sql requests of repository" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
