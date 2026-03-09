@@ -8,6 +8,7 @@ namespace ConversionReportService.Application.Abstractions.Repositories;
 public interface IReportRepository
 {
     Task<long> CreateRequestAsync(
+        long externalRequestId,
         ReportRequest request,
         NpgsqlConnection conn,
         NpgsqlTransaction tran,

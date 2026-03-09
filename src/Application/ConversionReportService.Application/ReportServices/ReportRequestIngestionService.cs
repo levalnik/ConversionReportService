@@ -32,7 +32,7 @@ public sealed class ReportRequestIngestionService : IReportRequestIngestionServi
                 evt.CheckoutId,
                 new ReportPeriod(evt.From, evt.To));
 
-            await _repository.CreateRequestAsync(request, conn, tran, cancellationToken);
+            await _repository.CreateRequestAsync(evt.RequestId, request, conn, tran, cancellationToken);
             await tran.CommitAsync(cancellationToken);
 
             return request.Id;

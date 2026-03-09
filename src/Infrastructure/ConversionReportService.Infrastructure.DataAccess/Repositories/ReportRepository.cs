@@ -17,6 +17,7 @@ public class ReportRepository : IReportRepository
     }
 
     public async Task<long> CreateRequestAsync(
+        long externalRequestId,
         ReportRequest request,
         NpgsqlConnection conn,
         NpgsqlTransaction tran,
@@ -24,14 +25,16 @@ public class ReportRepository : IReportRepository
     {
         const string sql = """
             INSERT INTO report_requests
-            (product_id, checkout_id, period_start, period_end, status, created_at)
+            (external_request_id, product_id, checkout_id, period_start, period_end, status, created_at)
             VALUES
-            (@productId, @checkoutId, @periodStart, @periodEnd, @status, @createdAt)
+            (@externalRequestId, @productId, @checkoutId, @periodStart, @periodEnd, @status, @createdAt)
+            ON CONFLICT (external_request_id) DO NOTHING
             RETURNING id
         """;
 
         await using var cmd = new NpgsqlCommand(sql, conn, tran);
 
+        cmd.Parameters.AddWithValue("externalRequestId", externalRequestId);
         cmd.Parameters.AddWithValue("productId", request.ProductId);
         cmd.Parameters.AddWithValue("checkoutId", request.CheckoutId);
         cmd.Parameters.AddWithValue("periodStart", request.Period.From);
@@ -39,7 +42,27 @@ public class ReportRepository : IReportRepository
         cmd.Parameters.AddWithValue("status", request.Status.ToString());
         cmd.Parameters.AddWithValue("createdAt", request.CreatedAt);
 
-        var id = (long)(await cmd.ExecuteScalarAsync(cancellationToken))!;
+        var insertedIdObj = await cmd.ExecuteScalarAsync(cancellationToken);
+        long id;
+
+        if (insertedIdObj is long insertedId)
+        {
+            id = insertedId;
+        }
+        else
+        {
+            const string selectExistingSql = """
+                SELECT id
+                FROM report_requests
+                WHERE external_request_id = @externalRequestId
+            """;
+
+            await using var selectCmd = new NpgsqlCommand(selectExistingSql, conn, tran);
+            selectCmd.Parameters.AddWithValue("externalRequestId", externalRequestId);
+
+            id = (long)(await selectCmd.ExecuteScalarAsync(cancellationToken)
+                 ?? throw new InvalidOperationException($"Request for external_request_id={externalRequestId} was not found."));
+        }
 
         request.SetId(id);
 

@@ -14,15 +14,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6e876314-4a1c-40cc-8ee8-3cfb5001cf72" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Tools/ConversionReportService.Tools.KafkaPublisher/Program.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Tools/ConversionReportService.Tools.KafkaPublisher/Protos/report_requested_event.proto" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Tools/ConversionReportService.Tools.KafkaPublisher/Settings/PublisherSettings.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Tools/ConversionReportService.Tools.KafkaPublisher/Settings/PublisherSettingsRoot.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Tools/ConversionReportService.Tools.KafkaPublisher/appsettings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ConversionReportService/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ConversionReportService/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConversionReportService.slnx" beforeDir="false" afterPath="$PROJECT_DIR$/ConversionReportService.slnx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ConversionReportService/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/ConversionReportService/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Kafka/Extensions/KafkaExtension.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Kafka/Extensions/KafkaExtension.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/ConversionReportService.Application.Abstractions/Repositories/IReportRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/ConversionReportService.Application.Abstractions/Repositories/IReportRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/ConversionReportService.Application/ReportServices/ReportRequestIngestionService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/ConversionReportService.Application/ReportServices/ReportRequestIngestionService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Repositories/ReportRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Repositories/ReportRepository.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
