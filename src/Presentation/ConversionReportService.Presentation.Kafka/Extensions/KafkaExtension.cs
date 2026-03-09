@@ -16,7 +16,7 @@ public static class KafkaExtension
             .Bind(configuration.GetSection("Kafka"))
             .ValidateOnStart();
 
-        services.AddSingleton<IConsumer<Ignore, byte[]>>(sp =>
+        services.AddSingleton<IConsumer<long, byte[]>>(sp =>
         {
             var options = sp.GetRequiredService<IOptions<KafkaOptions>>().Value;
             var config = new ConsumerConfig
@@ -27,7 +27,7 @@ public static class KafkaExtension
                 EnableAutoCommit = false
             };
 
-            return new ConsumerBuilder<Ignore, byte[]>(config)
+            return new ConsumerBuilder<long, byte[]>(config)
                 .Build();
         });
 

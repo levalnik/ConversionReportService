@@ -15,6 +15,9 @@
     <Project Path="src/Presentation/ConversionReportService.Presentation.Kafka/ConversionReportService.Presentation.Kafka.csproj" />
     <Project Path="src\Presentation\ConversionReportService.Presentation.Grpc\ConversionReportService.Presentation.Grpc.csproj" />
   </Folder>
+  <Folder Name="/src/Tools/">
+    <Project Path="src/Tools/ConversionReportService.Tools.KafkaPublisher/ConversionReportService.Tools.KafkaPublisher.csproj" />
+  </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/ConversionReportService.Tests/ConversionReportService.Tests.csproj" />
   </Folder>
