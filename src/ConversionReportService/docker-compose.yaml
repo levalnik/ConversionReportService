@@ -28,40 +28,37 @@ services:
       - redis_data:/data
 
   zookeeper:
-    image: wurstmeister/zookeeper:latest
-    platform: linux/amd64
+    image: confluentinc/cp-zookeeper:7.6.1
     restart: unless-stopped
     environment:
-      - ALLOW_ANONYMOUS_LOGIN=yes
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
     networks:
       - conversion-report-network
 
   kafka:
-    image: wurstmeister/kafka:latest
+    image: confluentinc/cp-kafka:7.6.1
     restart: unless-stopped
     environment:
-      KAFKA_LOG_DIRS: /kafka-data
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-
       KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
-      KAFKA_LISTENERS: EXTERNAL://:9093,INTERNAL://:9094
-      KAFKA_ADVERTISED_LISTENERS: EXTERNAL://127.0.0.1:9093,INTERNAL://kafka:9094
-
+      KAFKA_LISTENERS: INTERNAL://0.0.0.0:9092,EXTERNAL://0.0.0.0:9093
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:9092,EXTERNAL://localhost:9093
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: EXTERNAL:PLAINTEXT,INTERNAL:PLAINTEXT
-      ALLOW_PLAINTEXT_LISTENER: yes
-
-      KAFKA_CREATE_TOPICS:
-        report_requested:1:1
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
 
     depends_on:
       - zookeeper
     networks:
       - conversion-report-network
     volumes:
-      - kafka_data:/kafka-data
+      - kafka_data:/var/lib/kafka/data
     ports:
-      - "9093:9094"
+      - "9093:9093"
 
   kafka-ui:
     image: provectuslabs/kafka-ui:latest
@@ -76,7 +73,7 @@ services:
       - ../Presentation/ConversionReportService.Presentation.Kafka/Protos:/schemas
     environment:
       kafka.clusters.0.name: kafka
-      kafka.clusters.0.bootstrapServers: kafka:9094
+      kafka.clusters.0.bootstrapServers: kafka:9092
 
       kafka.clusters.0.defaultKeySerde: ProtobufFile
       kafka.clusters.0.defaultValueSerde: ProtobufFile

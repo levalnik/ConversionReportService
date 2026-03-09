@@ -11,9 +11,8 @@
       <PackageReference Include="FluentMigrator" Version="8.0.1" />
       <PackageReference Include="FluentMigrator.Runner" Version="8.0.1" />
       <PackageReference Include="FluentMigrator.Runner.Postgres" Version="8.0.1" />
-      <PackageReference Include="Microsoft.Extensions.Configuration" Version="11.0.0-preview.1.26104.118" />
-      <PackageReference Include="Microsoft.Extensions.Options" Version="11.0.0-preview.1.26104.118" />
-      <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="11.0.0-preview.1.26104.118" />
+      <PackageReference Include="Microsoft.Extensions.Options" Version="9.0.1" />
+      <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="8.0.0" />
       <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
       <PackageReference Include="StackExchange.Redis" Version="2.11.8" />
     </ItemGroup>
