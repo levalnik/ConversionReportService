@@ -83,6 +83,9 @@ services:
 
       kafka.clusters.0.serde.0.properties.protobufMessageNameForKeyByTopic.report_requested: ReportRequestedKey
       kafka.clusters.0.serde.0.properties.protobufMessageNameByTopic.report_requested: ReportRequestedValue
+      kafka.clusters.0.serde.0.properties.protobufMessageNameByTopic.payment_event: PaymentEventValue
+      kafka.clusters.0.serde.0.properties.protobufMessageNameByTopic.view_event: ViewEventValue
+
 
 networks:
   conversion-report-network:

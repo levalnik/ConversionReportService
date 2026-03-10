@@ -10,6 +10,7 @@ public static class InfrastructureRepositoryExtension
     public static IServiceCollection AddInfrastructureRepository(this IServiceCollection services)
     {
         services.AddScoped<IReportRepository, ReportRepository>();
+        services.AddScoped<IEventRepository, EventRepository>();
 
         return services;
     }

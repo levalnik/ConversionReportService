@@ -10,20 +10,20 @@ using Microsoft.Extensions.Options;
 
 namespace ConversionReportService.Presentation.Kafka.Consumers;
 
-public sealed class ReportRequestedConsumer : BackgroundService
+public sealed class ReportRequestedEventConsumer : BackgroundService
 {
     private readonly IConsumer<long, byte[]> _consumer;
     private readonly IServiceScopeFactory _scopeFactory;
     private readonly KafkaOptions _options;
-    private readonly ILogger<ReportRequestedConsumer> _logger;
+    private readonly ILogger<ReportRequestedEventConsumer> _logger;
 
-    public ReportRequestedConsumer(
-        IConsumer<long, byte[]> consumer,
+    public ReportRequestedEventConsumer(
+        IKafkaConsumerFactory consumerFactory,
         IServiceScopeFactory scopeFactory,
         IOptions<KafkaOptions> options,
-        ILogger<ReportRequestedConsumer> logger)
+        ILogger<ReportRequestedEventConsumer> logger)
     {
-        _consumer = consumer;
+        _consumer = consumerFactory.Create();
         _scopeFactory = scopeFactory;
         _options = options.Value;
         _logger = logger;

@@ -25,9 +25,26 @@
             <OutputDir>obj/Debug/net9.0/</OutputDir>
             <Generator>MSBuild:Compile</Generator>
         </Protobuf>
+        <Protobuf Include="Protos\view_event.proto">
+            <GrpcServices>None</GrpcServices>
+            <Access>Public</Access>
+            <ProtoCompile>True</ProtoCompile>
+            <CompileOutputs>True</CompileOutputs>
+            <OutputDir>obj/Debug/net9.0/</OutputDir>
+            <Generator>MSBuild:Compile</Generator>
+        </Protobuf>
+        <Protobuf Include="Protos\payment_event.proto">
+            <GrpcServices>None</GrpcServices>
+            <Access>Public</Access>
+            <ProtoCompile>True</ProtoCompile>
+            <CompileOutputs>True</CompileOutputs>
+            <OutputDir>obj/Debug/net9.0/</OutputDir>
+            <Generator>MSBuild:Compile</Generator>
+        </Protobuf>
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\Application\ConversionReportService.Application.Abstractions\ConversionReportService.Application.Abstractions.csproj" />
       <ProjectReference Include="..\..\Application\ConversionReportService.Application.Contracts\ConversionReportService.Application.Contracts.csproj" />
     </ItemGroup>
 

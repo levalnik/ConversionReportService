@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package conversionreportservice.events;
+
+import "google/protobuf/timestamp.proto";
+
+option csharp_namespace = "ConversionReportService.Infrastructure.Messaging.Contracts";
+
+message ViewEventValue {
+  int64 product_id = 1;
+  int64 checkout_id = 2;
+  google.protobuf.Timestamp occurred_at = 3;
+}
