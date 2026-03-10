@@ -9,4 +9,6 @@ public class KafkaOptions
     public string ConsumerGroupId { get; init; } = "conversion-report-service";
 
     public int PollTimeoutMs { get; init; } = 500;
+    
+    public int BatchSize { get; init; } = 1000;
 }

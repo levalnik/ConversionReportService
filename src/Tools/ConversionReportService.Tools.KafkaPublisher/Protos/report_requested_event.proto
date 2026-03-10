@@ -20,3 +20,14 @@ message ReportRequestedValue {
 
   google.protobuf.Timestamp created_at = 6;
 }
+
+message ReportRequestedBatchValue {
+  repeated ReportRequestedValue requests = 1;
+}
+
+message ReportRequestedEnvelope {
+  oneof payload {
+    ReportRequestedValue single = 1;
+    ReportRequestedBatchValue batch = 2;
+  }
+}

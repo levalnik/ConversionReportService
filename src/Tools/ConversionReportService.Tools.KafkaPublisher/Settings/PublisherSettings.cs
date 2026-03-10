@@ -6,6 +6,23 @@ public class PublisherSettings
 
     public string? Topic { get; init; }
 
+    public IReadOnlyList<PublisherRequest>? Batch { get; init; }
+
+    public long? RequestId { get; init; }
+
+    public long? ProductId { get; init; }
+
+    public long? CheckoutId { get; init; }
+
+    public DateTime? From { get; init; }
+
+    public DateTime? To { get; init; }
+
+    public DateTime? CreatedAt { get; init; }
+}
+
+public class PublisherRequest
+{
     public long? RequestId { get; init; }
 
     public long? ProductId { get; init; }
