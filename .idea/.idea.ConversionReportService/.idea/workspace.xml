@@ -15,18 +15,24 @@
   <component name="ChangeListManager">
     <list default="true" id="6e876314-4a1c-40cc-8ee8-3cfb5001cf72" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ConversionReportService/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ConversionReportService/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/ConversionReportService.Application.Models/Events/ReportRequestedEvent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/ConversionReportService.Application.Models/Events/ReportRequestedEvent.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/ConversionReportService.Application.Abstractions/Repositories/IReportRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/ConversionReportService.Application.Abstractions/Repositories/IReportRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/ConversionReportService.Application.Contracts/ReportServices/IReportProcessingService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/ConversionReportService.Application.Contracts/ReportServices/IReportProcessingService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/ConversionReportService.Application.Contracts/ReportServices/IReportRequestIngestionService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/ConversionReportService.Application.Contracts/ReportServices/IReportRequestIngestionService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/ConversionReportService.Application.Contracts/ReportServices/IReportService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/ConversionReportService.Application.Contracts/ReportServices/IReportService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/ConversionReportService.Application.Models/Exceptions/ReportNotFoundException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/ConversionReportService.Application.Models/Exceptions/ReportNotFoundException.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/ConversionReportService.Application.Models/Exceptions/UnknownReportStatusException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/ConversionReportService.Application.Models/Exceptions/UnknownReportStatusException.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/ConversionReportService.Application.Models/Requests/ReportRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/ConversionReportService.Application.Models/Requests/ReportRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/ConversionReportService.Application/Extensions/ApplicationServiceExtension.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/ConversionReportService.Application/Extensions/ApplicationServiceExtension.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/ConversionReportService.Application/ReportServices/ReportProcessingService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/ConversionReportService.Application/ReportServices/ReportProcessingService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/ConversionReportService.Application/ReportServices/ReportRequestIngestionService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/ConversionReportService.Application/ReportServices/ReportRequestIngestionService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/ConversionReportService.Application/ReportServices/ReportService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/ConversionReportService.Application/ReportServices/ReportService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Database/Migrations/CreateInitialTables.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Database/Migrations/CreateInitialTables.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Extensions/InfrastructureRepositoryExtension.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Extensions/InfrastructureRepositoryExtension.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ConversionReportService/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/ConversionReportService/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Repositories/ReportRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Repositories/ReportRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Grpc/Services/ReportServiceGrpc.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Grpc/Services/ReportServiceGrpc.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Kafka/Consumers/ReportRequestedConsumer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Kafka/Consumers/ReportRequestedConsumer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Kafka/Extensions/KafkaExtension.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Kafka/Extensions/KafkaExtension.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Kafka/Options/KafkaOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Kafka/Options/KafkaOptions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tools/ConversionReportService.Tools.KafkaPublisher/Settings/PublisherSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tools/ConversionReportService.Tools.KafkaPublisher/Settings/PublisherSettings.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/ConversionReportService.Tests/ConversionReportService.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/tests/ConversionReportService.Tests/ConversionReportService.Tests.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/ConversionReportService.Tests/Services/ReportServiceCachingTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/tests/ConversionReportService.Tests/Services/ReportServiceCachingTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tools/ConversionReportService.Tools.KafkaPublisher/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tools/ConversionReportService.Tools.KafkaPublisher/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +120,8 @@
   },
   "keyToStringList": {
     "DatabaseDriversLRU": [
-      "postgresql"
+      "postgresql",
+      "sqlserver"
     ]
   }
 }]]></component>
@@ -235,7 +242,7 @@
       <workItem from="1772622391894" duration="5769000" />
       <workItem from="1772982331439" duration="3955000" />
       <workItem from="1772992718047" duration="11011000" />
-      <workItem from="1773102319595" duration="2236000" />
+      <workItem from="1773102319595" duration="7935000" />
     </task>
     <task id="LOCAL-00001" summary="Init">
       <option name="closed" value="true" />
@@ -413,7 +420,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773099928090</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="feat: made inner and outer request id same, added exceptions; &#10;test: added unit tests for grpc interceptor, ReportResult and added test for caching&#10;style: brought up code to the same style">
+      <option name="closed" value="true" />
+      <created>1773104792639</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1773104792639</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -441,7 +456,8 @@
     <MESSAGE value="feat: added different ttl for caching" />
     <MESSAGE value="test: added unit tests for models and services" />
     <MESSAGE value="feat: added external request id to prevent duplication of requests" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: added external request id to prevent duplication of requests" />
+    <MESSAGE value="feat: made inner and outer request id same, added exceptions; &#10;test: added unit tests for grpc interceptor, ReportResult and added test for caching&#10;style: brought up code to the same style" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: made inner and outer request id same, added exceptions; &#10;test: added unit tests for grpc interceptor, ReportResult and added test for caching&#10;style: brought up code to the same style" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

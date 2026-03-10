@@ -17,12 +17,7 @@ public class ReportRequest
     public ReportStatus Status { get; private set; }
 
     public DateTime CreatedAt { get; private set; }
-
-    private ReportRequest()
-    {
-        Period = null!;
-    }
-
+    
     private ReportRequest(
         long id,
         long productId,
