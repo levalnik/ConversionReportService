@@ -32,7 +32,7 @@ public static class KafkaExtension
         });
 
         services.AddHostedService<ReportRequestedConsumer>();
-        
+
         return services;
     }
 }

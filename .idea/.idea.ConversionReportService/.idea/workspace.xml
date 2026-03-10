@@ -15,9 +15,18 @@
   <component name="ChangeListManager">
     <list default="true" id="6e876314-4a1c-40cc-8ee8-3cfb5001cf72" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ConversionReportService/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ConversionReportService/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/ConversionReportService.Application.Abstractions/Repositories/IReportRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/ConversionReportService.Application.Abstractions/Repositories/IReportRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/ConversionReportService.Application.Models/Events/ReportRequestedEvent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/ConversionReportService.Application.Models/Events/ReportRequestedEvent.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/ConversionReportService.Application/ReportServices/ReportProcessingService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/ConversionReportService.Application/ReportServices/ReportProcessingService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/ConversionReportService.Application/ReportServices/ReportRequestIngestionService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/ConversionReportService.Application/ReportServices/ReportRequestIngestionService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/ConversionReportService.Application/ReportServices/ReportService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/ConversionReportService.Application/ReportServices/ReportService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Database/Migrations/CreateInitialTables.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Database/Migrations/CreateInitialTables.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Extensions/InfrastructureRepositoryExtension.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Extensions/InfrastructureRepositoryExtension.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Repositories/ReportRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/ConversionReportService.Infrastructure.DataAccess/Repositories/ReportRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Kafka/Extensions/KafkaExtension.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Kafka/Extensions/KafkaExtension.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Kafka/Options/KafkaOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Presentation/ConversionReportService.Presentation.Kafka/Options/KafkaOptions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tools/ConversionReportService.Tools.KafkaPublisher/Settings/PublisherSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tools/ConversionReportService.Tools.KafkaPublisher/Settings/PublisherSettings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/ConversionReportService.Tests/ConversionReportService.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/tests/ConversionReportService.Tests/ConversionReportService.Tests.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/ConversionReportService.Tests/Services/ReportServiceCachingTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/tests/ConversionReportService.Tests/Services/ReportServiceCachingTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,29 +95,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Docker.ConversionReportService/Dockerfile.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.updates&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Docker.ConversionReportService/Dockerfile.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "RiderUnitTestingPageId",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Docker.ConversionReportService/Dockerfile">
     <configuration name="ConsoleApp1" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
@@ -226,6 +235,7 @@
       <workItem from="1772622391894" duration="5769000" />
       <workItem from="1772982331439" duration="3955000" />
       <workItem from="1772992718047" duration="11011000" />
+      <workItem from="1773102319595" duration="2236000" />
     </task>
     <task id="LOCAL-00001" summary="Init">
       <option name="closed" value="true" />
@@ -395,7 +405,15 @@
       <option name="project" value="LOCAL" />
       <updated>1772994340143</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="feat: added external request id to prevent duplication of requests">
+      <option name="closed" value="true" />
+      <created>1773099928090</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1773099928090</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -422,7 +440,8 @@
     <MESSAGE value="feat: implemented full async pipeline and real DB-based conversion metrics" />
     <MESSAGE value="feat: added different ttl for caching" />
     <MESSAGE value="test: added unit tests for models and services" />
-    <option name="LAST_COMMIT_MESSAGE" value="test: added unit tests for models and services" />
+    <MESSAGE value="feat: added external request id to prevent duplication of requests" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: added external request id to prevent duplication of requests" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

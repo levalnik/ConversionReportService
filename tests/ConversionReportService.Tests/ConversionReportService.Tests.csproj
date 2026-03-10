@@ -23,6 +23,7 @@
     <ProjectReference Include="..\..\src\Application\ConversionReportService.Application.Abstractions\ConversionReportService.Application.Abstractions.csproj" />
     <ProjectReference Include="..\..\src\Application\ConversionReportService.Application.Contracts\ConversionReportService.Application.Contracts.csproj" />
     <ProjectReference Include="..\..\src\Application\ConversionReportService.Application.Models\ConversionReportService.Application.Models.csproj" />
+    <ProjectReference Include="..\..\src\Presentation\ConversionReportService.Presentation.Grpc\ConversionReportService.Presentation.Grpc.csproj" />
   </ItemGroup>
 
 </Project>

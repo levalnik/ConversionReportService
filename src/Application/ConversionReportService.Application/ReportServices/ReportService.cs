@@ -2,6 +2,7 @@ using ConversionReportService.Application.Abstractions.Caching;
 using ConversionReportService.Application.Abstractions.Repositories;
 using ConversionReportService.Application.Contracts.ReportServices;
 using ConversionReportService.Application.Models.Dtos;
+using ConversionReportService.Application.Models.Exceptions;
 using ConversionReportService.Application.Models.Statuses;
 
 namespace ConversionReportService.Application.ReportServices;
@@ -32,7 +33,7 @@ public class ReportService : IReportService
         var request = await _repository.GetRequestAsync(requestId, ct);
 
         if (request == null)
-            throw new KeyNotFoundException("Report not found");
+            throw new ReportNotFoundException(requestId);
 
         var result = await _repository.GetResultAsync(requestId, ct);
 

@@ -1,4 +1,5 @@
 using ConversionReportService.Application.Abstractions.Repositories;
+using ConversionReportService.Application.Models.Exceptions;
 using ConversionReportService.Application.Models.Requests;
 using ConversionReportService.Application.Models.Results;
 using ConversionReportService.Application.Models.Statuses;
@@ -25,15 +26,17 @@ public class ReportRepository : IReportRepository
     {
         const string sql = """
             INSERT INTO report_requests
-            (external_request_id, product_id, checkout_id, period_start, period_end, status, created_at)
+            (id, external_request_id, product_id, checkout_id, period_start, period_end, status, created_at)
+            OVERRIDING SYSTEM VALUE
             VALUES
-            (@externalRequestId, @productId, @checkoutId, @periodStart, @periodEnd, @status, @createdAt)
-            ON CONFLICT (external_request_id) DO NOTHING
+            (@requestId, @externalRequestId, @productId, @checkoutId, @periodStart, @periodEnd, @status, @createdAt)
+            ON CONFLICT (id) DO NOTHING
             RETURNING id
         """;
 
         await using var cmd = new NpgsqlCommand(sql, conn, tran);
 
+        cmd.Parameters.AddWithValue("requestId", request.Id);
         cmd.Parameters.AddWithValue("externalRequestId", externalRequestId);
         cmd.Parameters.AddWithValue("productId", request.ProductId);
         cmd.Parameters.AddWithValue("checkoutId", request.CheckoutId);
@@ -54,14 +57,14 @@ public class ReportRepository : IReportRepository
             const string selectExistingSql = """
                 SELECT id
                 FROM report_requests
-                WHERE external_request_id = @externalRequestId
+                WHERE id = @requestId
             """;
 
             await using var selectCmd = new NpgsqlCommand(selectExistingSql, conn, tran);
-            selectCmd.Parameters.AddWithValue("externalRequestId", externalRequestId);
+            selectCmd.Parameters.AddWithValue("requestId", request.Id);
 
             id = (long)(await selectCmd.ExecuteScalarAsync(cancellationToken)
-                 ?? throw new InvalidOperationException($"Request for external_request_id={externalRequestId} was not found."));
+                 ?? throw new InvalidOperationException($"Request {request.Id} was not found after idempotent insert."));
         }
 
         request.SetId(id);
@@ -184,7 +187,7 @@ public class ReportRepository : IReportRepository
 
         var statusValue = reader.GetString(5);
         if (!Enum.TryParse(statusValue, out ReportStatus status))
-            throw new InvalidOperationException($"Unknown report status '{statusValue}'.");
+            throw new UnknownReportStatusException(statusValue);
 
         return ReportRequest.FromDatabase(
             reader.GetInt64(0),
@@ -217,7 +220,7 @@ public class ReportRepository : IReportRepository
 
         if (!await reader.ReadAsync(cancellationToken))
             return null;
-        
+
         return ReportResult.FromDatabase(
             reader.GetInt64(0),
             reader.GetInt32(1),

@@ -1,5 +1,6 @@
 using ConversionReportService.Application.Abstractions.Repositories;
 using ConversionReportService.Application.Contracts.ReportServices;
+using ConversionReportService.Application.Models.Exceptions;
 using ConversionReportService.Application.Models.Results;
 using ConversionReportService.Application.Models.Statuses;
 using Npgsql;
@@ -23,7 +24,7 @@ public sealed class ReportProcessingService : IReportProcessingService
     {
         var request = await _repository.GetRequestAsync(requestId, cancellationToken);
         if (request == null)
-            throw new KeyNotFoundException($"Report request {requestId} not found.");
+            throw new ReportNotFoundException(requestId);
 
         var (views, payments) = await _repository.GetMetricsAsync(
             request.ProductId,

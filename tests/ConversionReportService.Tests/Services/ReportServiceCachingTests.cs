@@ -150,4 +150,66 @@ public class ReportServiceCachingTests
         // Assert
         await Assert.ThrowsAsync<KeyNotFoundException>(act);
     }
+
+    [Fact]
+    public async Task GetReportAsync_ShouldUseInFlightThenTerminalTtl_WhenStatusChanges()
+    {
+        // Arrange
+        var now = DateTime.UtcNow;
+        var pendingRequest = ReportRequest.FromDatabase(
+            7,
+            11,
+            22,
+            new ReportPeriod(now.AddHours(-1), now),
+            ReportStatus.Pending,
+            now);
+
+        var completedRequest = ReportRequest.FromDatabase(
+            7,
+            11,
+            22,
+            new ReportPeriod(now.AddHours(-1), now),
+            ReportStatus.Completed,
+            now);
+
+        var cache = new Mock<IReportCache>();
+        cache.SetupSequence(c => c.GetAsync<ReportResponseDto>(7, It.IsAny<CancellationToken>()))
+            .ReturnsAsync((ReportResponseDto?)null)
+            .ReturnsAsync((ReportResponseDto?)null);
+        cache.Setup(c => c.SetAsync(
+                7,
+                It.IsAny<object>(),
+                It.IsAny<TimeSpan>(),
+                It.IsAny<CancellationToken>()))
+            .Returns(Task.CompletedTask);
+
+        var repository = new Mock<IReportRepository>();
+        repository.SetupSequence(r => r.GetRequestAsync(7, It.IsAny<CancellationToken>()))
+            .ReturnsAsync(pendingRequest)
+            .ReturnsAsync(completedRequest);
+        repository.SetupSequence(r => r.GetResultAsync(7, It.IsAny<CancellationToken>()))
+            .ReturnsAsync((ReportResult?)null)
+            .ReturnsAsync(ReportResult.FromDatabase(7, 15, 0.15, now));
+
+        var service = new ReportService(repository.Object, cache.Object);
+
+        // Act
+        await service.GetReportAsync(7, CancellationToken.None);
+        await service.GetReportAsync(7, CancellationToken.None);
+
+        // Assert
+        cache.Verify(c => c.SetAsync(
+                7,
+                It.IsAny<object>(),
+                It.Is<TimeSpan>(ttl => ttl == TimeSpan.FromSeconds(15)),
+                It.IsAny<CancellationToken>()),
+            Times.Once);
+
+        cache.Verify(c => c.SetAsync(
+                7,
+                It.IsAny<object>(),
+                It.Is<TimeSpan>(ttl => ttl == TimeSpan.FromMinutes(5)),
+                It.IsAny<CancellationToken>()),
+            Times.Once);
+    }
 }

@@ -3,7 +3,8 @@ using FluentMigrator;
 namespace ConversionReportService.Infrastructure.DataAccess.Database.Migrations;
 
 [Migration(0001)]
-public class CreateInitialTables : Migration {
+public class CreateInitialTables : Migration
+{
     public override void Up()
     {
         Create.Table("report_requests")
