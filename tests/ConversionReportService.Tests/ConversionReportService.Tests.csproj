@@ -9,8 +9,11 @@
 
   <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="8.8.0" />
+    <PackageReference Include="FluentMigrator.Runner" Version="8.0.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
     <PackageReference Include="Moq" Version="4.20.72" />
+    <PackageReference Include="Npgsql" Version="10.0.1" />
+    <PackageReference Include="Testcontainers.PostgreSql" Version="4.10.0" />
     <PackageReference Include="xunit" Version="2.9.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2">
       <PrivateAssets>all</PrivateAssets>
@@ -23,6 +26,7 @@
     <ProjectReference Include="..\..\src\Application\ConversionReportService.Application.Abstractions\ConversionReportService.Application.Abstractions.csproj" />
     <ProjectReference Include="..\..\src\Application\ConversionReportService.Application.Contracts\ConversionReportService.Application.Contracts.csproj" />
     <ProjectReference Include="..\..\src\Application\ConversionReportService.Application.Models\ConversionReportService.Application.Models.csproj" />
+    <ProjectReference Include="..\..\src\Infrastructure\ConversionReportService.Infrastructure.DataAccess\ConversionReportService.Infrastructure.DataAccess.csproj" />
     <ProjectReference Include="..\..\src\Presentation\ConversionReportService.Presentation.Grpc\ConversionReportService.Presentation.Grpc.csproj" />
   </ItemGroup>
 

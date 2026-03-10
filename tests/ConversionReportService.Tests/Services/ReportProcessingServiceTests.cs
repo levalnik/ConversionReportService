@@ -1,62 +1,97 @@
-using ConversionReportService.Application.Abstractions.Repositories;
 using ConversionReportService.Application.Models.Requests;
-using ConversionReportService.Application.Models.Statuses;
 using ConversionReportService.Application.Models.ValueObjects;
 using ConversionReportService.Application.ReportServices;
-using Moq;
+using ConversionReportService.Infrastructure.DataAccess.Database.Migrations;
+using ConversionReportService.Infrastructure.DataAccess.Repositories;
+using FluentAssertions;
+using FluentMigrator.Runner;
+using Microsoft.Extensions.DependencyInjection;
+using Npgsql;
+using Testcontainers.PostgreSql;
 using Xunit;
 
 namespace ConversionReportService.Tests.Services;
 
-public class ReportProcessingServiceTests
+public class ReportProcessingServiceTests : IAsyncLifetime
 {
-    [Fact]
-    public async Task ProcessAsync_ShouldThrowKeyNotFound_WhenRequestMissing()
+    private readonly PostgreSqlContainer _postgres;
+
+    public ReportProcessingServiceTests()
     {
-        // Arrange
-        var repository = new Mock<IReportRepository>();
-        repository.Setup(r => r.GetRequestAsync(42, It.IsAny<CancellationToken>()))
-            .ReturnsAsync((ReportRequest?)null);
-        var service = new ReportProcessingService(repository.Object, null!);
+        _postgres = new PostgreSqlBuilder()
+            .WithImage("postgres:16")
+            .WithDatabase("test_db")
+            .WithUsername("postgres")
+            .WithPassword("postgres")
+            .Build();
+    }
 
-        // Act
-        Func<Task> act = () =>
-            service.ProcessAsync(42, CancellationToken.None);
+    public async Task InitializeAsync()
+    {
+        await _postgres.StartAsync();
 
-        // Assert
-        await Assert.ThrowsAsync<KeyNotFoundException>(act);
+        await ApplyMigrationsAsync();
+    }
+
+    public async Task DisposeAsync()
+    {
+        await _postgres.DisposeAsync();
+    }
+
+    private async Task ApplyMigrationsAsync()
+    {
+        var services = new ServiceCollection()
+            .AddFluentMigratorCore()
+            .ConfigureRunner(rb => rb
+                .AddPostgres()
+                .WithGlobalConnectionString(_postgres.GetConnectionString())
+                .ScanIn(typeof(CreateInitialTables).Assembly).For.Migrations())
+            .AddLogging(lb => lb.AddFluentMigratorConsole())
+            .BuildServiceProvider(false);
+
+        using var scope = services.CreateScope();
+
+        var runner = scope.ServiceProvider.GetRequiredService<IMigrationRunner>();
+
+        runner.MigrateUp();
     }
 
     [Fact]
-    public async Task ProcessAsync_ShouldPropagate_WhenMetricsReadFails()
+    public async Task ProcessAsync_Should_Create_Report_Result()
     {
         // Arrange
-        var repository = new Mock<IReportRepository>();
-        var request = ReportRequest.FromDatabase(
-            id: 42,
-            productId: 10,
-            checkoutId: 20,
-            period: new ReportPeriod(
-                DateTime.UtcNow.AddHours(-1),
-                DateTime.UtcNow),
-            status: ReportStatus.Pending,
-            createdAt: DateTime.UtcNow);
+        var dataSource = NpgsqlDataSource.Create(_postgres.GetConnectionString());
 
-        repository.Setup(r => r.GetRequestAsync(42, It.IsAny<CancellationToken>()))
-            .ReturnsAsync(request);
-        repository.Setup(r => r.GetMetricsAsync(
-                10,
-                20,
-                request.Period.From,
-                request.Period.To,
-                It.IsAny<CancellationToken>()))
-            .ThrowsAsync(new InvalidOperationException("metrics unavailable"));
-        var service = new ReportProcessingService(repository.Object, null!);
+        var repository = new ReportRepository(dataSource);
+
+        var service = new ReportProcessingService(repository, dataSource);
+
+        var request = new ReportRequest(
+            productId: 1,
+            checkoutId: 1,
+            new ReportPeriod(DateTime.UtcNow.AddDays(-1), DateTime.UtcNow));
+
+        const long externalRequestId = 100;
+
+        await using var conn = await dataSource.OpenConnectionAsync();
+        await using var tran = await conn.BeginTransactionAsync();
+
+        var requestId = await repository.CreateRequestAsync(
+            externalRequestId,
+            request,
+            conn,
+            tran,
+            CancellationToken.None);
+
+        await tran.CommitAsync();
 
         // Act
-        Func<Task> act = () => service.ProcessAsync(42, CancellationToken.None);
+        await service.ProcessAsync(requestId, CancellationToken.None);
 
         // Assert
-        await Assert.ThrowsAsync<InvalidOperationException>(act);
+        var result = await repository.GetResultAsync(requestId, CancellationToken.None);
+
+        result.Should().NotBeNull();
+        result!.RequestId.Should().Be(requestId);
     }
 }
